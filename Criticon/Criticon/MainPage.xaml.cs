@@ -28,14 +28,31 @@ namespace Criticon
             bool Extra = CheckExtravagante.IsChecked;
             bool Raro = CheckRaro.IsChecked;
             bool Grande = CheckGrande.IsChecked;
+            string[] mensajeH = new string[9];
+            string[] mensajeM;
 
+            string mensajefinal = "";
+
+
+            for (int i = 0; i < mensajeH.Length; i++)
+            {
+                mensajefinal += mensajeH[i];
+            }
             if(!String.IsNullOrEmpty(Nombre))
             {
-                if(Hombre || Mujer)
+                if(Hombre)
                 {
-                    string mensaje = $"{Nombre} es, {(Hombre ? "Hombre" : "Mujer")}, {(Alto ? "es alto" : "")}, " +
-                        $"{(Feo ? "feo":"")} {(Listo ? "listo":"")}, {(Extra ? "Extravagante" : "")}, {(Raro ? "Raro":"")}, " +
-                        $"{(Grande ? "Grande":"")}";
+                    string mensaje = $"{Nombre} es, {(Hombre ? mensajeH[0] = "Hombre" : null)}{(Alto ? mensajeH[1] = ", alto" : null)}" +
+                        $"{(Feo ? mensajeH[2] = ", feo" :null)}{(Listo ? mensajeH[3]=", listo":null)}{(Extra ? ", Extravagante" : "")}{(Raro ? mensajeH[4]=", Raro":null)}" +
+                        $"{(Grande ? mensajeH[5]=", Grande":null)}";
+                    for(int i = 0;i < mensajeH.Length; i++)
+                    Criticaxd.Text = mensaje;
+                }
+                else if (Mujer)
+                {
+                    string mensaje = $"{Nombre} es, {(Mujer ? "Mujer" : null)}{(Alto ? ", es alta" : null)}" +
+                       $"{(Feo ? ", fea" : "")}{(Listo ? ", lista" : null)}{(Extra ? ", Extravagante" : null)}{(Raro ? ", Rara" : null)}" +
+                       $"{(Grande ? ", Grande" : null)}";
                     Criticaxd.Text = mensaje;
                 }
                 else
