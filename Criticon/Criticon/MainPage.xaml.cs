@@ -28,32 +28,52 @@ namespace Criticon
             bool Extra = CheckExtravagante.IsChecked;
             bool Raro = CheckRaro.IsChecked;
             bool Grande = CheckGrande.IsChecked;
-            string[] mensajeH = new string[9];
-            string[] mensajeM;
+            string mensaje = $"{Nombre} es";
 
-            string mensajefinal = "";
-
-
-            for (int i = 0; i < mensajeH.Length; i++)
+            if (!String.IsNullOrEmpty(Nombre))
             {
-                mensajefinal += mensajeH[i];
-            }
-            if(!String.IsNullOrEmpty(Nombre))
-            {
-                if(Hombre)
+                if (Hombre)
                 {
-                    string mensaje = $"{Nombre} es, {(Hombre ? mensajeH[0] = "Hombre" : null)}{(Alto ? mensajeH[1] = ", alto" : null)}" +
-                        $"{(Feo ? mensajeH[2] = ", feo" :null)}{(Listo ? mensajeH[3]=", listo":null)}{(Extra ? ", Extravagante" : "")}{(Raro ? mensajeH[4]=", Raro":null)}" +
-                        $"{(Grande ? mensajeH[5]=", Grande":null)}";
-                    for(int i = 0;i < mensajeH.Length; i++)
-                    Criticaxd.Text = mensaje;
+                    mensaje += ", hombre";
+                    mensaje += Alto ? ", alto" : "";
+                    mensaje += Feo ? ", feo" : "";
+                    mensaje += Listo ? ", listo" : "";
+                    mensaje += Extra ? ", extravagante" : "";
+                    mensaje += Raro ? ", raro" : "";
+                    mensaje += Grande ? ", grande" : "";
+                    int indice = mensaje.LastIndexOf(",");
+                    string puntoBuscado = ", ";
+                    mensaje = mensaje.Remove(indice, puntoBuscado.Length).Insert(indice, " y ");
+                    if (Alto || Feo || Listo || Extra || Raro || Grande)
+                    {
+                        Criticaxd.Text = mensaje;
+                    }
+                    else
+                    {
+                        DisplayAlert("Mensaje:", "Tiene que marcar al menos una casilla", "Salir");
+                    }
                 }
                 else if (Mujer)
                 {
-                    string mensaje = $"{Nombre} es, {(Mujer ? "Mujer" : null)}{(Alto ? ", es alta" : null)}" +
-                       $"{(Feo ? ", fea" : "")}{(Listo ? ", lista" : null)}{(Extra ? ", Extravagante" : null)}{(Raro ? ", Rara" : null)}" +
-                       $"{(Grande ? ", Grande" : null)}";
-                    Criticaxd.Text = mensaje;
+                    mensaje += ", mujer";
+                    mensaje = $"{Nombre} es " + (Mujer ? ", mujer" : null);
+                    mensaje += Alto ? ", alta" : "";
+                    mensaje += Feo ? ", fea" : "";
+                    mensaje += Listo ? ", lista" : "";
+                    mensaje += Extra ? ", extravagante" : "";
+                    mensaje += Raro ? ", rara" : "";
+                    mensaje += Grande ? ", grande" : "";
+                    int indice = mensaje.LastIndexOf(",");
+                    string puntoBuscado = ", ";
+                    mensaje = mensaje.Remove(indice, puntoBuscado.Length).Insert(indice, " y ");
+                    if (Alto || Feo || Listo || Extra || Raro || Grande)
+                    {
+                        Criticaxd.Text = mensaje;
+                    }
+                    else
+                    {
+                        DisplayAlert("Mensaje:", "Tiene que marcar al menos una casilla", "Salir");
+                    }
                 }
                 else
                 {
@@ -64,6 +84,7 @@ namespace Criticon
             {
                 DisplayAlert("Mensaje", "Por favor ingrese su nombre!", "Salir");
             }
+
 
         }
     }
