@@ -30,60 +30,59 @@ namespace Criticon
             bool Grande = CheckGrande.IsChecked;
             string mensaje = $"{Nombre} es";
 
-            if (!String.IsNullOrEmpty(Nombre))
+            if (Alto || Feo || Listo || Extra || Raro || Grande)
             {
-                if (Hombre)
+                if (!String.IsNullOrEmpty(Nombre))
                 {
-                    mensaje += ", hombre";
-                    mensaje += Alto ? ", alto" : "";
-                    mensaje += Feo ? ", feo" : "";
-                    mensaje += Listo ? ", listo" : "";
-                    mensaje += Extra ? ", extravagante" : "";
-                    mensaje += Raro ? ", raro" : "";
-                    mensaje += Grande ? ", grande" : "";
-                    int indice = mensaje.LastIndexOf(",");
-                    string puntoBuscado = ", ";
-                    mensaje = mensaje.Remove(indice, puntoBuscado.Length).Insert(indice, " y ");
-                    if (Alto || Feo || Listo || Extra || Raro || Grande)
+                    if (Hombre)
                     {
+                        mensaje += ", hombre";
+                        mensaje += Alto ? ", alto" : "";
+                        mensaje += Feo ? ", feo" : "";
+                        mensaje += Listo ? ", listo" : "";
+                        mensaje += Extra ? ", extravagante" : "";
+                        mensaje += Raro ? ", raro" : "";
+                        mensaje += Grande ? ", grande" : "";
+                        int indice = mensaje.LastIndexOf(",");
+                        string puntoBuscado = ", ";
+                        mensaje = mensaje.Remove(indice, puntoBuscado.Length).Insert(indice, " y ");
                         Criticaxd.Text = mensaje;
+
+
+                    }
+                    else if (Mujer)
+                    {
+                        mensaje += ", mujer";
+                        mensaje = $"{Nombre} es " + (Mujer ? ", mujer" : null);
+                        mensaje += Alto ? ", alta" : "";
+                        mensaje += Feo ? ", fea" : "";
+                        mensaje += Listo ? ", lista" : "";
+                        mensaje += Extra ? ", extravagante" : "";
+                        mensaje += Raro ? ", rara" : "";
+                        mensaje += Grande ? ", grande" : "";
+                        int indice = mensaje.LastIndexOf(",");
+                        string puntoBuscado = ", ";
+                        mensaje = mensaje.Remove(indice, puntoBuscado.Length).Insert(indice, " y ");
+                        Criticaxd.Text = mensaje;
+
+
                     }
                     else
                     {
-                        DisplayAlert("Mensaje:", "Tiene que marcar al menos una casilla", "Salir");
-                    }
-                }
-                else if (Mujer)
-                {
-                    mensaje += ", mujer";
-                    mensaje = $"{Nombre} es " + (Mujer ? ", mujer" : null);
-                    mensaje += Alto ? ", alta" : "";
-                    mensaje += Feo ? ", fea" : "";
-                    mensaje += Listo ? ", lista" : "";
-                    mensaje += Extra ? ", extravagante" : "";
-                    mensaje += Raro ? ", rara" : "";
-                    mensaje += Grande ? ", grande" : "";
-                    int indice = mensaje.LastIndexOf(",");
-                    string puntoBuscado = ", ";
-                    mensaje = mensaje.Remove(indice, puntoBuscado.Length).Insert(indice, " y ");
-                    if (Alto || Feo || Listo || Extra || Raro || Grande)
-                    {
-                        Criticaxd.Text = mensaje;
-                    }
-                    else
-                    {
-                        DisplayAlert("Mensaje:", "Tiene que marcar al menos una casilla", "Salir");
+                        DisplayAlert("Mensaje", "Por favor seleccione un genero", "Salir");
                     }
                 }
                 else
                 {
-                    DisplayAlert("Mensaje", "Por favor seleccione un genero", "Salir");
+                    DisplayAlert("Mensaje", "Por favor ingrese su nombre!", "Salir");
                 }
             }
             else
             {
-                DisplayAlert("Mensaje", "Por favor ingrese su nombre!", "Salir");
+                DisplayAlert("Mensaje:", "Tiene que marcar al menos una casilla", "Salir");
             }
+
+
 
 
         }
