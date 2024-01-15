@@ -48,7 +48,7 @@
             <Button Grid.ColumnSpan="1" Grid.Row="3" Clicked="Button_Clicked" BackgroundColor="Pink" CornerRadius="150" Margin="80,0,80,0" Padding="0,0" Text="Criticar"/>
            
         </Grid>
-        <Entry   x:Name="Criticaxd" TextColor="Black" FontSize="20" HeightRequest="90" Margin="0,65,0,0" BackgroundColor="Pink" IsEnabled="False"/>
+        <Editor AutoSize="Disabled" x:Name="Criticaxd" TextColor="Black" FontSize="20" HeightRequest="90" Margin="0,65,0,0" BackgroundColor="Pink" IsEnabled="False"/>
 
     </StackLayout>
 
