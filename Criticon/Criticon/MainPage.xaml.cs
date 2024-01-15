@@ -15,57 +15,48 @@ namespace Criticon
         {
             InitializeComponent();
         }
-
+        public string Remplazar(string Message)
+        {           
+            while (Message.Contains("o"))
+            {
+                int femenino = Message.IndexOf("o");
+                Message = Message.Remove(femenino, "o".Length).Insert(femenino, "a");
+            } 
+            return Message;
+        }
+        public string mensaje;
+        public string datos;
         private void Button_Clicked(object sender, EventArgs e)
         {
-
-            string Nombre = NombreUser.Text;
-            bool Hombre = RBhombre.IsChecked;
-            bool Mujer = RBmujer.IsChecked;
-            bool Alto = CheckAlto.IsChecked;
-            bool Feo = CheckFeo.IsChecked;
-            bool Listo = CheckListo.IsChecked;
-            bool Extra = CheckExtravagante.IsChecked;
-            bool Raro = CheckRaro.IsChecked;
-            bool Grande = CheckGrande.IsChecked;
-            string mensaje = $"{Nombre} es";
-
-            if (Alto || Feo || Listo || Extra || Raro || Grande)
+   
+            datos = NombreUser.Text + " es";
+          
+            if (CheckAlto.IsChecked || CheckFeo.IsChecked || CheckListo.IsChecked || CheckExtravagante.IsChecked || CheckRaro.IsChecked || CheckGrande.IsChecked)
             {
-                if (!String.IsNullOrEmpty(Nombre))
+                if (!String.IsNullOrEmpty(datos))
                 {
-                    if (Hombre)
+                    mensaje ="";
+                    mensaje += RBhombre.IsChecked ? " hombre" : " mujer";
+                    mensaje += CheckAlto.IsChecked ? ", alto" : "";
+                    mensaje += CheckFeo.IsChecked ? ", feo" : "";
+                    mensaje += CheckListo.IsChecked ? ", listo" : "";
+                    mensaje += CheckExtravagante.IsChecked ? ", extravagante" : "";
+                    mensaje += CheckRaro.IsChecked ? ", raro" : "";
+                    mensaje += CheckGrande.IsChecked ? ", grande" : "";
+                    int indice = mensaje.LastIndexOf(",");
+                    string puntoBuscado = ", ";
+                    mensaje = mensaje.Remove(indice, puntoBuscado.Length).Insert(indice, " y ");
+
+                    if (RBhombre.IsChecked)
                     {
-                        mensaje += ", hombre";
-                        mensaje += Alto ? ", alto" : "";
-                        mensaje += Feo ? ", feo" : "";
-                        mensaje += Listo ? ", listo" : "";
-                        mensaje += Extra ? ", extravagante" : "";
-                        mensaje += Raro ? ", raro" : "";
-                        mensaje += Grande ? ", grande" : "";
-                        int indice = mensaje.LastIndexOf(",");
-                        string puntoBuscado = ", ";
-                        mensaje = mensaje.Remove(indice, puntoBuscado.Length).Insert(indice, " y ");
-                        Criticaxd.Text = mensaje;
-
-
+                        datos += mensaje;
+                        Criticaxd.Text = datos;
                     }
-                    else if (Mujer)
+                    else if (RBmujer.IsChecked)
                     {
-                        mensaje += ", mujer";
-                        mensaje = $"{Nombre} es " + (Mujer ? ", mujer" : null);
-                        mensaje += Alto ? ", alta" : "";
-                        mensaje += Feo ? ", fea" : "";
-                        mensaje += Listo ? ", lista" : "";
-                        mensaje += Extra ? ", extravagante" : "";
-                        mensaje += Raro ? ", rara" : "";
-                        mensaje += Grande ? ", grande" : "";
-                        int indice = mensaje.LastIndexOf(",");
-                        string puntoBuscado = ", ";
-                        mensaje = mensaje.Remove(indice, puntoBuscado.Length).Insert(indice, " y ");
-                        Criticaxd.Text = mensaje;
-
-
+                        mensaje = Remplazar(mensaje);
+                        datos+= mensaje;
+                        Criticaxd.Text = datos;
                     }
                     else
                     {
